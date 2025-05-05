@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/About.css';
+import './styles/AboutPage.css';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
 

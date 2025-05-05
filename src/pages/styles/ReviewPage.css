@@ -1,0 +1,17 @@
+.review-title-label {
+  font-size: 20px;
+  font-family: Roboto-Bold, Arial, sans-serif;
+}
+
+.review-content blockquote {
+  border-left: 2px solid #999;
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1rem 0;
+  color: #444;
+}
+
+.review-content em {
+  font-style: italic;
+}
+

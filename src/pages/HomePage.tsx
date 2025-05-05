@@ -17,7 +17,8 @@ export default function HomePage() {
     async function getPosts() {
       const { data: reviews } = await supabase
         .from('book_review_posts')
-        .select();
+        .select()
+        .order('created_at', { ascending: false });
 
       setPosts(reviews);
     }
