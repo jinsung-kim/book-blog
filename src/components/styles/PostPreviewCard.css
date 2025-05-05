@@ -1,0 +1,36 @@
+.post-preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.post-header-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-header-label {
+  font-family: Roboto-Bold, Arial, sans-serif;
+  font-size: 18px;
+}
+
+.created-label {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.tags-row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.quote {
+  border-left: 2px solid #555;
+  padding-left: 12px;
+  font-style: italic;
+  font-family: Roboto-Light, Arial, sans-serif;
+  margin: 8px 0;
+}
