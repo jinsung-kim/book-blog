@@ -9,7 +9,6 @@ import './styles/HomePage.css';
 
 export default function HomePage() {
   const [posts, setPosts] = useState<BookReviewPost[]>([]);
-  // TODO: Create loading state.
   const [loading, setLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
@@ -43,16 +42,20 @@ export default function HomePage() {
       <Navbar currentIndex={0} />
 
       <div className="reviews-container">
-        {posts.map((p, i) => (
-          <PostPreviewCard
-            onClick={() => handleReviewClick(p)}
-            title={p.title}
-            content={p.content}
-            created_at={p.created_at}
-            tags={p.tags}
-            key={`preview-${p.title}-${i}`}
-          />
-        ))}
+        {loading
+          ? Array.from({ length: 15 }).map((_, i) => (
+              <PostPreviewCard.Skeleton key={`skeleton-${i}`} />
+            ))
+          : posts.map((p, i) => (
+              <PostPreviewCard
+                onClick={() => handleReviewClick(p)}
+                title={p.title}
+                content={p.content}
+                created_at={p.created_at}
+                tags={p.tags}
+                key={`preview-${p.title}-${i}`}
+              />
+            ))}
       </div>
     </Container>
   );

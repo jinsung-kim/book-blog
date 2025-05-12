@@ -34,3 +34,51 @@
   font-family: Roboto-Light, Arial, sans-serif;
   margin: 8px 0;
 }
+
+/* Skeleton. */
+.skeleton .skeleton-line {
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.6s infinite ease-in-out;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 18px;
+}
+
+.skeleton-date {
+  width: 40%;
+  height: 16px;
+}
+
+.skeleton-tag {
+  width: 50px;
+  height: 16px;
+}
+
+.skeleton-quote {
+  width: 80%;
+  height: 54px;
+  margin: 8px 0;
+  padding-left: 12px;
+}
+
+/* Match spacing/padding of original card */
+.post-preview-container.skeleton {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    background-color: #eee;
+  }
+  50% {
+    background-color: #ddd;
+  }
+  100% {
+    background-color: #eee;
+  }
+}

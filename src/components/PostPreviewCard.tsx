@@ -45,3 +45,22 @@ export default function PostPreviewCard({
     </div>
   );
 }
+
+PostPreviewCard.Skeleton = function PostPreviewCardSkeleton() {
+  return (
+    <div className="post-preview-container skeleton">
+      <div className="post-header-row">
+        <div className="post-header-label skeleton-line skeleton-title" />
+        <div className="created-label skeleton-line skeleton-date" />
+      </div>
+
+      <div className="tags-row">
+        <div className="tag skeleton-line skeleton-tag" />
+        <div className="tag skeleton-line skeleton-tag" />
+        <div className="tag skeleton-line skeleton-tag" />
+      </div>
+
+      <div className="skeleton-line skeleton-quote" />
+    </div>
+  );
+};
