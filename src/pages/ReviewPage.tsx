@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BookReviewPost } from '../utils/types';
 import ReactMarkdown from 'react-markdown';
 import { fetchBookReviewPost } from '../utils/supabase';
 import './styles/ReviewPage.css';
 import { TagsRow } from '../components/PostPreviewCard';
+import { isValidUuid } from '../utils/uuid';
 
 export default function ReviewPage() {
-  const { uuid } = useParams<{ uuid: string }>();
+  const { slugOrId } = useParams<{ slugOrId: string }>();
+  const navigate = useNavigate();
   const [post, setPost] = useState<BookReviewPost | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!uuid) return;
+    if (!slugOrId) return;
 
     setLoading(true);
-    fetchBookReviewPost(uuid)
-      .then(setPost)
+    fetchBookReviewPost(slugOrId)
+      .then(data => {
+        if (!data) return;
+        setPost(data);
+
+        if (isValidUuid(slugOrId) && data.slug && slugOrId !== data.slug) {
+          navigate(`/review/${data.slug}`, { replace: true });
+        }
+      })
       .finally(() => setLoading(false));
-  }, [uuid]);
+  }, [slugOrId, navigate]);
 
   return (
     <Container>
@@ -58,7 +67,7 @@ export default function ReviewPage() {
               </div>
             )}
 
-            <TagsRow tags={post?.tags ?? []} />
+            <TagsRow tags={post?.tags ?? []} allowInteraction={true} />
           </div>
         </div>
       )}

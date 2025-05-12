@@ -1,11 +1,32 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import './styles/PostPreviewCard.css';
+import { useNavigate } from 'react-router-dom';
 
-export function TagsRow({ tags }: { tags: string[] }) {
+export function TagsRow({
+  tags,
+  allowInteraction = false,
+}: {
+  tags: string[];
+  allowInteraction?: boolean;
+}) {
+  const navigate = useNavigate();
+
+  const handleTagClick = useCallback(
+    (tag: string) => {
+      // TODO: Handle Posthog event.
+
+      navigate(`/?tags=${tag}`);
+    },
+    [navigate],
+  );
   return (
     <div className="tags-row">
       {tags.map((t, i) => (
-        <div key={`tag-${t}-${i}`} className="tag">
+        <div
+          key={`tag-${t}-${i}`}
+          className="tag"
+          onClick={allowInteraction ? () => handleTagClick(t) : undefined}
+        >
           #{t}
         </div>
       ))}
