@@ -3,4 +3,68 @@
   flex: 1;
   flex-direction: column;
   gap: 24px;
+  margin-top: 24px;
+}
+
+.filter-sort-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filters-container, .sort-container {
+  font-family: Roboto-Bold, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.filters-row, .filters-row-skeleton {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.filters-row {
+  /* Offset the padding below. */
+  margin-left: -4px;
+}
+
+
+.favorites-filter, .tag {
+  font-family: Roboto-Light, Arial, sans-serif;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.favorites-filter.active,
+.tag.active {
+  font-family: Roboto-Bold, Arial, sans-serif;
+  color: #6d712e;
+}
+
+/* Skeleton. */
+.skeleton-heading {
+  width: 100px;
+  height: 20px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-filter {
+  width: 80px;
+  height: 24px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
 }

@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { capitalize } from 'lodash';
 import './styles/PostPreviewCard.css';
 
 export function TagsRow({ tags }: { tags: string[] }) {
@@ -7,7 +6,7 @@ export function TagsRow({ tags }: { tags: string[] }) {
     <div className="tags-row">
       {tags.map((t, i) => (
         <div key={`tag-${t}-${i}`} className="tag">
-          #{capitalize(t)}
+          #{t}
         </div>
       ))}
     </div>

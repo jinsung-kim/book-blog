@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const TABS = [
   { redirectTo: '../', label: 'Home' },
   { redirectTo: '../about', label: 'About' },
-  { redirectTo: '../index', label: 'Index' },
 ];
 
 export default function Navbar({ currentIndex }: { currentIndex: number }) {

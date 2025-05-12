@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 export default function AboutPage() {
   const navigate = useNavigate();
 
-  const handleFavoritesRenavigate = useCallback(() => {
-    navigate('/index?filters=favorites');
+  const handleFavoritesNavigate = useCallback(() => {
+    navigate('/?favorite=true');
   }, [navigate]);
 
   return (
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <div className="question-container">
             <div className="label-bold">Favorites?</div>
 
-            <div className="favorites-link" onClick={handleFavoritesRenavigate}>
+            <div className="favorites-link" onClick={handleFavoritesNavigate}>
               Click here to see all of my favorites here.
             </div>
           </div>
