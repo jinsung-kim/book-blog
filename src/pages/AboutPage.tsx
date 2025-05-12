@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './styles/AboutPage.css';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 export default function AboutPage() {
+  const navigate = useNavigate();
+
+  const handleFavoritesRenavigate = useCallback(() => {
+    navigate('/index?filters=favorites');
+  }, [navigate]);
+
   return (
     <Container>
       <Navbar currentIndex={1} />
@@ -25,7 +32,6 @@ export default function AboutPage() {
           <div className="question-container">
             <div className="label-bold">What are you currently reading?</div>
 
-            {/* TODO: Make this dynamic. */}
             <div className="label">
               <i>One Hundred Years of Solitude</i> by Gabriel García Márquez
             </div>
@@ -34,7 +40,9 @@ export default function AboutPage() {
           <div className="question-container">
             <div className="label-bold">Favorites?</div>
 
-            {/* TODO: Fetch dynamically with supabase. */}
+            <div className="favorites-link" onClick={handleFavoritesRenavigate}>
+              Click here to see all of my favorites here.
+            </div>
           </div>
 
           <div className="question-container">

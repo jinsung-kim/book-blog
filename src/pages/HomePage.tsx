@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
-import { supabase } from '../utils/supabase';
+import { fetchBookReviewPosts, supabase } from '../utils/supabase';
 import { BookReviewPost } from '../utils/types';
 import PostPreviewCard from '../components/PostPreviewCard';
 import { useNavigate } from 'react-router-dom';
@@ -14,18 +14,10 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getPosts() {
-      const { data: reviews } = await supabase
-        .from('book_review_posts')
-        .select()
-        .order('created_at', { ascending: false });
-
-      setPosts(reviews);
-    }
-
     setLoading(true);
-
-    getPosts().then(() => setLoading(false));
+    fetchBookReviewPosts()
+      .then(setPosts)
+      .finally(() => setLoading(false));
   }, []);
 
   const handleReviewClick = useCallback(
@@ -43,7 +35,7 @@ export default function HomePage() {
 
       <div className="reviews-container">
         {loading
-          ? Array.from({ length: 15 }).map((_, i) => (
+          ? Array.from({ length: 10 }).map((_, i) => (
               <PostPreviewCard.Skeleton key={`skeleton-${i}`} />
             ))
           : posts.map((p, i) => (

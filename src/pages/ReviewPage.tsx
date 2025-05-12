@@ -6,6 +6,7 @@ import { BookReviewPost } from '../utils/types';
 import ReactMarkdown from 'react-markdown';
 import { supabase } from '../utils/supabase';
 import './styles/ReviewPage.css';
+import { TagsRow } from '../components/PostPreviewCard';
 
 export default function ReviewPage() {
   const { uuid } = useParams<{ uuid: string }>();
@@ -44,17 +45,21 @@ export default function ReviewPage() {
         <div className="review-title-label">{post?.title}</div>
         <ReactMarkdown>{post?.content}</ReactMarkdown>
 
-        {post?.created_at && (
-          <div className="created-label">
-            <b>
-              Written on{' '}
-              {new Date(post?.created_at)
-                .toISOString()
-                .slice(0, 10)
-                .replace(/-/g, '/')}
-            </b>
-          </div>
-        )}
+        <div className="footer-metadata">
+          {post?.created_at && (
+            <div className="created-label">
+              <b>
+                Written on{' '}
+                {new Date(post?.created_at)
+                  .toISOString()
+                  .slice(0, 10)
+                  .replace(/-/g, '/')}
+              </b>
+            </div>
+          )}
+
+          <TagsRow tags={post?.tags ?? []} />
+        </div>
       </div>
     </Container>
   );

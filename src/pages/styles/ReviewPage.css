@@ -12,12 +12,24 @@
   font-family: Roboto, Arial, sans-serif;
 }
 
+.review-content a {
+  color: #b3541e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .review-content blockquote {
   border-left: 2px solid #999;
   padding-left: 1rem;
   font-style: italic;
   margin: 1rem 0;
   color: #444;
+}
+
+.footer-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 

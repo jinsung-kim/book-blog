@@ -2,6 +2,18 @@ import React, { useMemo } from 'react';
 import { capitalize } from 'lodash';
 import './styles/PostPreviewCard.css';
 
+export function TagsRow({ tags }: { tags: string[] }) {
+  return (
+    <div className="tags-row">
+      {tags.map((t, i) => (
+        <div key={`tag-${t}-${i}`} className="tag">
+          #{capitalize(t)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function PostPreviewCard({
   title,
   content,
@@ -33,13 +45,7 @@ export default function PostPreviewCard({
         )}
       </div>
 
-      <div className="tags-row">
-        {tags.map(t => (
-          <div key={`tag-${t}-${title}`} className="tag">
-            #{capitalize(t)}
-          </div>
-        ))}
-      </div>
+      <TagsRow tags={tags} />
 
       <div className="quote">{openingQuote}</div>
     </div>

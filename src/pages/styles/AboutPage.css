@@ -25,3 +25,10 @@
   flex-direction: column;
   gap: 32px;
 }
+
+.favorites-link {
+  cursor: pointer;
+  color: #b3541e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
