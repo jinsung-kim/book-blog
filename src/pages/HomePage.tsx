@@ -5,6 +5,7 @@ import { supabase } from '../utils/supabase';
 import { BookReviewPost } from '../utils/types';
 import PostPreviewCard from '../components/PostPreviewCard';
 import { useNavigate } from 'react-router-dom';
+import './styles/HomePage.css';
 
 export default function HomePage() {
   const [posts, setPosts] = useState<BookReviewPost[]>([]);

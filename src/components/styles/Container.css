@@ -1,8 +1,7 @@
 @media (min-width: 540px) {
   .container {
     max-width: 60%;
-    margin-left: 10%;
-    margin-top: 10%;
+    margin: 5% auto;
   }
 }
 

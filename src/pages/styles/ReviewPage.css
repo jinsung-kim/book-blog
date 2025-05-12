@@ -1,6 +1,15 @@
 .review-title-label {
-  font-size: 20px;
+  font-size: 22px;
   font-family: Roboto-Bold, Arial, sans-serif;
+}
+
+.created-label {
+  font-size: 16px;
+}
+
+.review-content {
+  font-size: 16px;
+  font-family: Roboto, Arial, sans-serif;
 }
 
 .review-content blockquote {
@@ -11,7 +20,22 @@
   color: #444;
 }
 
+
 .review-content em {
   font-style: italic;
 }
 
+@media (min-width: 540px) {
+  .review-content img {
+    max-width: 70%;
+    max-height: 455px;
+  }
+}
+
+@media (max-width: 540px) {
+  .review-content img {
+    max-width: 100%;
+    max-height: 370px;
+    object-fit: contain;
+  }
+}

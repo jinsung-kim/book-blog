@@ -25,10 +25,12 @@ export default function PostPreviewCard({
       <div className="post-header-row">
         <div className="post-header-label">{title}</div>
 
-        <div className="created-label">
-          Created On:{' '}
-          {new Date(created_at).toISOString().slice(0, 10).replace(/-/g, '/')}
-        </div>
+        {created_at && (
+          <div className="created-label">
+            Written{' '}
+            {new Date(created_at).toISOString().slice(0, 10).replace(/-/g, '/')}
+          </div>
+        )}
       </div>
 
       <div className="tags-row">
