@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
 import { BookReviewPost } from '../utils/types';
 import ReactMarkdown from 'react-markdown';
-import { supabase } from '../utils/supabase';
+import { fetchBookReviewPost, supabase } from '../utils/supabase';
 import './styles/ReviewPage.css';
 import { TagsRow } from '../components/PostPreviewCard';
 
@@ -14,53 +14,53 @@ export default function ReviewPage() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    async function fetchPost() {
-      if (!uuid) return;
-
-      const { data, error } = await supabase
-        .from('book_review_posts')
-        .select()
-        .eq('uuid', uuid)
-        .single();
-
-      if (error) {
-        console.error('Error fetching post:', error);
-        setPost(null);
-      } else {
-        setPost(data);
-      }
-    }
+    if (!uuid) return;
 
     setLoading(true);
-    fetchPost().then(() => setLoading(false));
+    fetchBookReviewPost(uuid)
+      .then(setPost)
+      .finally(() => setLoading(false));
   }, [uuid]);
 
   return (
     <Container>
       <Navbar currentIndex={-1} />
 
-      {/*TODO: Write loading state. */}
+      {loading ? (
+        <>
+          <div className="review-content loading">
+            <div className="skeleton-title" />
+            <div className="skeleton-paragraph" />
+            <div className="skeleton-paragraph short" />
+            <div className="skeleton-paragraph" />
+            <div className="skeleton-paragraph" />
+            <div className="skeleton-paragraph short" />
+            <div className="skeleton-paragraph" />
+            <div className="skeleton-tags" />
+          </div>
+        </>
+      ) : (
+        <div className="review-content">
+          <div className="review-title-label">{post?.title}</div>
+          <ReactMarkdown>{post?.content}</ReactMarkdown>
 
-      <div className="review-content">
-        <div className="review-title-label">{post?.title}</div>
-        <ReactMarkdown>{post?.content}</ReactMarkdown>
+          <div className="footer-metadata">
+            {post?.created_at && (
+              <div className="created-label">
+                <b>
+                  Written on{' '}
+                  {new Date(post?.created_at)
+                    .toISOString()
+                    .slice(0, 10)
+                    .replace(/-/g, '/')}
+                </b>
+              </div>
+            )}
 
-        <div className="footer-metadata">
-          {post?.created_at && (
-            <div className="created-label">
-              <b>
-                Written on{' '}
-                {new Date(post?.created_at)
-                  .toISOString()
-                  .slice(0, 10)
-                  .replace(/-/g, '/')}
-              </b>
-            </div>
-          )}
-
-          <TagsRow tags={post?.tags ?? []} />
+            <TagsRow tags={post?.tags ?? []} />
+          </div>
         </div>
-      </div>
+      )}
     </Container>
   );
 }

@@ -51,3 +51,48 @@
     object-fit: contain;
   }
 }
+
+/* Loading skeleton. */
+.review-content.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-title {
+  height: 28px;
+  width: 60%;
+  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-paragraph.short {
+  width: 70%;
+}
+
+.skeleton-paragraph {
+  height: 96px;
+  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.skeleton-tags {
+  height: 24px;
+  width: 40%;
+  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
