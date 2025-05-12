@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
 import { BookReviewPost } from '../utils/types';
 import ReactMarkdown from 'react-markdown';
-import { fetchBookReviewPost, supabase } from '../utils/supabase';
+import { fetchBookReviewPost } from '../utils/supabase';
 import './styles/ReviewPage.css';
 import { TagsRow } from '../components/PostPreviewCard';
 
@@ -31,6 +31,7 @@ export default function ReviewPage() {
           <div className="review-content loading">
             <div className="skeleton-title" />
             <div className="skeleton-paragraph" />
+            <div className="skeleton-image" />
             <div className="skeleton-paragraph short" />
             <div className="skeleton-paragraph" />
             <div className="skeleton-paragraph" />

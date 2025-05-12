@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
-import { fetchBookReviewPosts, supabase } from '../utils/supabase';
+import { fetchBookReviewPosts } from '../utils/supabase';
 import { BookReviewPost } from '../utils/types';
 import PostPreviewCard from '../components/PostPreviewCard';
 import { useNavigate } from 'react-router-dom';
