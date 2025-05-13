@@ -45,7 +45,7 @@ export default function HomePage() {
     (review: BookReviewPost) => {
       // TODO: Fire Posthog analytic.
 
-      navigate(`/review/${review.uuid}`);
+      navigate(`/review/${review.slug}`);
     },
     [navigate],
   );
