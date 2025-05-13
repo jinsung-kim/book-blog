@@ -3,6 +3,7 @@ import './styles/AboutPage.css';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import posthog from 'posthog-js';
 
 export default function AboutPage() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function AboutPage() {
           <div className="question-container">
             <div className="label-bold">Favorites?</div>
 
-            <div className="favorites-link" onClick={handleFavoritesNavigate}>
+            <div className="link" onClick={handleFavoritesNavigate}>
               Click here to see all of my favorites here.
             </div>
           </div>
@@ -52,6 +53,21 @@ export default function AboutPage() {
               <li>David Foster Wallace</li>
               <li>Joan Didion</li>
             </ul>
+          </div>
+
+          <div className="label row">
+            Written with love. See source code&nbsp;
+            <div
+              className="link"
+              onClick={() => {
+                posthog.capture('clicked_source_code');
+                window.location.href =
+                  'https://github.com/jinsung-kim/book-blog';
+              }}
+            >
+              here
+            </div>
+            .
           </div>
         </div>
       </div>
