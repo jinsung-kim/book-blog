@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { BookReviewPost } from './types';
 import { isValidUuid } from './uuid';
+import posthog from 'posthog-js';
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
@@ -22,6 +23,8 @@ export async function fetchBookReviewPosts(
 ): Promise<BookReviewPost[]> {
   const { showOldestFirst = false, isPersonalFavorite, tags } = options;
 
+  posthog.capture('fetch_book_review_posts', { options });
+
   let query = supabase
     .from('book_review_posts')
     .select()
@@ -33,7 +36,7 @@ export async function fetchBookReviewPosts(
   }
 
   if (tags?.length > 0) {
-    query = query.overlaps('tags', tags);
+    query = query.contains('tags', tags);
   }
 
   const { data, error } = await query;
@@ -49,6 +52,8 @@ export async function fetchBookReviewPosts(
 export async function fetchBookReviewPost(
   identifier: string,
 ): Promise<BookReviewPost | null> {
+  posthog.capture('fetch_book_review_post', { identifier });
+
   if (isValidUuid(identifier)) {
     const { data, error } = await supabase
       .from('book_review_posts')

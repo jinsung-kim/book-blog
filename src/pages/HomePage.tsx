@@ -43,8 +43,6 @@ export default function HomePage() {
 
   const handleReviewClick = useCallback(
     (review: BookReviewPost) => {
-      // TODO: Fire Posthog analytic.
-
       navigate(`/review/${review.slug}`);
     },
     [navigate],
