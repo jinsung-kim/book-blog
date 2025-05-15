@@ -54,6 +54,8 @@ export default function ReviewPage() {
           <div className="review-title-label">{post?.title}</div>
           <ReactMarkdown>{post?.content}</ReactMarkdown>
 
+          {!post?.completed && <div className="not-completed-label">DNF</div>}
+
           <div className="footer-metadata">
             {post?.created_at && (
               <div className="created-label">

@@ -22,12 +22,17 @@
   display: flex;
   flex: 1;
   flex-direction: row;
-  gap: 8px;
+  width: 80%;
 }
 
 .filters-row {
   /* Offset the padding below. */
   margin-left: -4px;
+  flex-wrap: wrap;
+}
+
+.filters-row-skeleton {
+  gap: 8px;
 }
 
 

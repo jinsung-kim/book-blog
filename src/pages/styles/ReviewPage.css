@@ -37,6 +37,11 @@
   font-style: italic;
 }
 
+.not-completed-label {
+  font-family: Roboto-Bold, Arial, sans-serif;
+  margin-bottom: 8px;
+}
+
 @media (min-width: 540px) {
   .review-content img {
     max-width: 70%;

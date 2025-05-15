@@ -16,12 +16,16 @@ export default function HomePage() {
   const [loadingPosts, setLoadingPosts] = useState<boolean>(false);
   const [loadingTags, setLoadingTags] = useState<boolean>(false);
 
-  const isFavorite = searchParams.get('favorite') === 'true';
+  const favoriteParam = searchParams.get('favorite');
+  const tagsParam = searchParams.get('tags');
+  const orderParam = searchParams.get('order');
+
+  const isFavorite = favoriteParam === 'true';
+  const showOldestFirst = orderParam === 'oldestFirst';
+
   const filteredTags = useMemo(() => {
-    const raw = searchParams.get('tags');
-    return raw ? raw.split(',').filter(Boolean) : [];
-  }, [searchParams]);
-  const showOldestFirst = searchParams.get('order') === 'oldestFirst';
+    return tagsParam ? tagsParam.split(',').filter(Boolean) : [];
+  }, [tagsParam]);
 
   useEffect(() => {
     setLoadingTags(true);
@@ -35,11 +39,18 @@ export default function HomePage() {
     fetchBookReviewPosts({
       isPersonalFavorite: isFavorite,
       tags: filteredTags,
-      showOldestFirst,
     })
       .then(setFilteredPosts)
       .finally(() => setLoadingPosts(false));
-  }, [showOldestFirst, isFavorite, filteredTags]);
+  }, [isFavorite, filteredTags]);
+
+  const sortedPosts = useMemo(() => {
+    return [...filteredPosts].sort((a, b) => {
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
+      return showOldestFirst ? dateA - dateB : dateB - dateA;
+    });
+  }, [filteredPosts, showOldestFirst]);
 
   const handleReviewClick = useCallback(
     (review: BookReviewPost) => {
@@ -168,7 +179,7 @@ export default function HomePage() {
           ? Array.from({ length: 10 }).map((_, i) => (
               <PostPreviewCard.Skeleton key={`skeleton-${i}`} />
             ))
-          : filteredPosts.map((p, i) => (
+          : sortedPosts.map((p, i) => (
               <PostPreviewCard
                 onClick={() => handleReviewClick(p)}
                 title={p.title}

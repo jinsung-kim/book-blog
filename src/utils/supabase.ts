@@ -21,15 +21,11 @@ interface FetchBookReviewOptions {
 export async function fetchBookReviewPosts(
   options: FetchBookReviewOptions = {},
 ): Promise<BookReviewPost[]> {
-  const { showOldestFirst = false, isPersonalFavorite, tags } = options;
+  const { isPersonalFavorite, tags } = options;
 
   posthog.capture('fetch_book_review_posts', { options });
 
-  let query = supabase
-    .from('book_review_posts')
-    .select()
-    .eq('published', true)
-    .order('created_at', { ascending: showOldestFirst });
+  let query = supabase.from('book_review_posts').select().eq('published', true);
 
   if (!!isPersonalFavorite) {
     query = query.eq('is_personal_favorite', isPersonalFavorite);
@@ -46,7 +42,7 @@ export async function fetchBookReviewPosts(
     return [];
   }
 
-  return data ?? [];
+  return data;
 }
 
 export async function fetchBookReviewPost(
