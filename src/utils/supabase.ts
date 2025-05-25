@@ -94,3 +94,21 @@ export async function fetchAllTags(): Promise<string[]> {
   const uniqueTags = Array.from(new Set(allTags));
   return uniqueTags.sort();
 }
+
+export async function fetchCurrentlyReadingTitle(): Promise<string | null> {
+  const { data, error } = await supabase
+    .from('book_review_posts')
+    .select('title')
+    .eq('published', false)
+    .eq('completed', false)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single();
+
+  if (error) {
+    console.error('Error fetching currently reading:', error);
+    return null;
+  }
+
+  return data?.title ?? null;
+}

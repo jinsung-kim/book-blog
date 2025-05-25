@@ -13,8 +13,6 @@ export function TagsRow({
 
   const handleTagClick = useCallback(
     (tag: string) => {
-      // TODO: Handle Posthog event.
-
       navigate(`/?tags=${tag}`);
     },
     [navigate],

@@ -1,12 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './styles/AboutPage.css';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import posthog from 'posthog-js';
+import { fetchCurrentlyReadingTitle } from '../utils/supabase';
 
 export default function AboutPage() {
   const navigate = useNavigate();
+  const [currentlyReadingTitle, setCurrentlyReadingTitle] = useState<
+    string | null
+  >(null);
+
+  useEffect(() => {
+    fetchCurrentlyReadingTitle().then(setCurrentlyReadingTitle);
+  }, []);
 
   const handleFavoritesNavigate = useCallback(() => {
     navigate('/?favorite=true');
@@ -30,13 +38,16 @@ export default function AboutPage() {
         </div>
 
         <div className="main-content">
-          <div className="question-container">
-            <div className="label-bold">What are you currently reading?</div>
+          {/* It's possible that I haven't picked a new book after finishing a review. */}
+          {currentlyReadingTitle?.length > 0 && (
+            <div className="question-container">
+              <div className="label-bold">What are you currently reading?</div>
 
-            <div className="label">
-              <i>One Hundred Years of Solitude</i> by Gabriel García Márquez
+              <div className="label">
+                <i>{currentlyReadingTitle}</i>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="question-container">
             <div className="label-bold">Favorites?</div>
@@ -56,7 +67,7 @@ export default function AboutPage() {
           </div>
 
           <div className="label row">
-            Written with love. See source code&nbsp;
+            Last updated 2025. See source code&nbsp;
             <div
               className="link"
               onClick={() => {
