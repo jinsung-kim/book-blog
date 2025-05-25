@@ -18,6 +18,8 @@ export default function ReviewPage() {
   useEffect(() => {
     if (!slugOrId) return;
 
+    window.scrollTo(0, 0);
+
     setLoading(true);
     fetchBookReviewPost(slugOrId)
       .then(data => {
