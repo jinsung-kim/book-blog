@@ -24,7 +24,12 @@
 .tags-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 4px;
+}
+
+.tag {
+  white-space: nowrap;
 }
 
 .tag:hover {

@@ -62,20 +62,14 @@ export default function HomePage() {
   const handleTagClick = useCallback(
     (tag: string) => {
       const params = new URLSearchParams(searchParams);
-      const currentTags = new Set(
-        (params.get('tags') || '').split(',').filter(Boolean),
-      );
+      const currentTag = params.get('tags');
 
-      if (currentTags.has(tag)) {
-        currentTags.delete(tag);
-      } else {
-        currentTags.add(tag);
-      }
-
-      if (currentTags.size > 0) {
-        params.set('tags', Array.from(currentTags).join(','));
-      } else {
+      // Only allow one tag at a time for now given the volume of reviews.
+      // Note: This excludes the favorites since that is handled separately.
+      if (currentTag === tag) {
         params.delete('tags');
+      } else {
+        params.set('tags', tag);
       }
 
       setSearchParams(params);
