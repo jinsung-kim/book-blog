@@ -3,7 +3,7 @@ import './styles/AboutPage.css';
 import Container from '../components/Container';
 import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
-import posthog from 'posthog-js';
+import { captureEvent } from '../utils/posthogClient';
 import { fetchCurrentlyReadingTitle } from '../utils/supabase';
 
 export default function AboutPage() {
@@ -71,7 +71,7 @@ export default function AboutPage() {
             <div
               className="link"
               onClick={() => {
-                posthog.capture('clicked_source_code');
+                captureEvent('clicked_source_code');
                 window.location.href =
                   'https://github.com/jinsung-kim/book-blog';
               }}

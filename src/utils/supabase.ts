@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { BookReviewPost } from './types';
 import { isValidUuid } from './uuid';
-import posthog from 'posthog-js';
+import { captureEvent } from './posthogClient';
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
@@ -23,7 +23,7 @@ export async function fetchBookReviewPosts(
 ): Promise<BookReviewPost[]> {
   const { isPersonalFavorite, tags } = options;
 
-  posthog.capture('fetch_book_review_posts', { options });
+  captureEvent('fetch_book_review_posts', { options });
 
   let query = supabase.from('book_review_posts').select().eq('published', true);
 
@@ -48,7 +48,7 @@ export async function fetchBookReviewPosts(
 export async function fetchBookReviewPost(
   identifier: string,
 ): Promise<BookReviewPost | null> {
-  posthog.capture('fetch_book_review_post', { identifier });
+  captureEvent('fetch_book_review_post', { identifier });
 
   if (isValidUuid(identifier)) {
     const { data, error } = await supabase
@@ -106,7 +106,6 @@ export async function fetchCurrentlyReadingTitle(): Promise<string | null> {
     .single();
 
   if (error) {
-    console.error('Error fetching currently reading:', error);
     return null;
   }
 
