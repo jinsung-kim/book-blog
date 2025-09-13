@@ -13,12 +13,14 @@
   gap: 12px;
 }
 
-.filters-container, .sort-container {
+.filters-container,
+.sort-container {
   font-family: Roboto-Bold, Arial, sans-serif;
   font-size: 16px;
 }
 
-.filters-row, .filters-row-skeleton {
+.filters-row,
+.filters-row-skeleton {
   display: flex;
   flex: 1;
   flex-direction: row;
@@ -35,8 +37,8 @@
   gap: 8px;
 }
 
-
-.favorites-filter, .tag {
+.favorites-filter,
+.tag {
   font-family: Roboto-Light, Arial, sans-serif;
   padding: 4px;
   cursor: pointer;
@@ -48,28 +50,26 @@
   color: #6d712e;
 }
 
-/* Skeleton. */
+/* Shimmer elements using global variables */
+.shimmer,
+.skeleton-heading,
+.skeleton-filter,
+.skeleton-tag,
+.filters-row-skeleton {
+  background: var(--shimmer-bg);
+  background-size: 200% 100%;
+  background-attachment: fixed;
+  animation: shimmer var(--shimmer-duration) infinite;
+  border-radius: 4px;
+}
+
 .skeleton-heading {
   width: 100px;
   height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #eee, #ddd, #eee);
-  animation: shimmer 1.5s infinite;
 }
 
 .skeleton-filter {
   width: 80px;
   height: 24px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #eee, #ddd, #eee);
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
+  display: inline-block;
 }

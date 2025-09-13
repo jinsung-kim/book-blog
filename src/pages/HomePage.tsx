@@ -137,7 +137,9 @@ export default function HomePage() {
 
                 {tags.map(t => (
                   <div
-                    className={`tag ${filteredTags.includes(t) ? 'active' : ''}`}
+                    className={`tag ${
+                      filteredTags.includes(t) ? 'active' : ''
+                    }`}
                     onClick={() => handleTagClick(t)}
                     key={`tag-${t}`}
                   >

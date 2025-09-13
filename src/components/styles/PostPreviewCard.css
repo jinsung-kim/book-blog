@@ -46,10 +46,11 @@
 
 /* Skeleton. */
 .skeleton .skeleton-line {
-  background: linear-gradient(90deg, #eee, #ddd, #eee);
+  background: var(--shimmer-bg);
   background-size: 200% 100%;
+  background-attachment: fixed;
+  animation: shimmer var(--shimmer-duration) infinite;
   border-radius: 4px;
-  animation: shimmer 1.5s infinite;
 }
 
 .skeleton-title {
@@ -78,14 +79,4 @@
 .post-preview-container.skeleton {
   padding-top: 4px;
   padding-bottom: 4px;
-}
-
-/* Shimmer animation */
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
 }

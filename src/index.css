@@ -18,3 +18,27 @@
   font-weight: normal;
   font-style: normal;
 }
+
+/* Global shimmer variables and animation */
+:root {
+  --shimmer-base: #eee;
+  --shimmer-highlight: #ddd;
+  --shimmer-angle: 90deg;
+  --shimmer-duration: 1.5s;
+  --shimmer-bg: linear-gradient(
+    var(--shimmer-angle),
+    var(--shimmer-base) 25%,
+    var(--shimmer-highlight) 50%,
+    var(--shimmer-base) 75%
+  );
+}
+
+/* Global shimmer keyframes animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
