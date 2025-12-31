@@ -8,6 +8,7 @@ import { fetchBookReviewPost } from '../utils/supabase';
 import './styles/ReviewPage.css';
 import { TagsRow } from '../components/PostPreviewCard';
 import { isValidUuid } from '../utils/uuid';
+import BookReviewMetaHeader from "../components/BookReviewMetaHeader";
 
 export default function ReviewPage() {
   const { slugOrId } = useParams<{ slugOrId: string }>();
@@ -53,6 +54,7 @@ export default function ReviewPage() {
         </>
       ) : (
         <div className="review-content">
+          <BookReviewMetaHeader post={post} />
           <div className="review-title-label">{post?.title}</div>
           <ReactMarkdown>{post?.content}</ReactMarkdown>
 
