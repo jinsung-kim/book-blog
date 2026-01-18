@@ -15,7 +15,7 @@ export function TagsRow({
     (tag: string) => {
       navigate(`/?tags=${tag}`);
     },
-    [navigate],
+    [navigate]
   );
   return (
     <div className="tags-row">
@@ -36,7 +36,7 @@ export default function PostPreviewCard({
   title,
   content,
   created_at,
-                                            is_favorite,
+  is_favorite,
   tags,
   onClick,
 }: {
@@ -55,10 +55,10 @@ export default function PostPreviewCard({
   return (
     <div className="post-preview-container" onClick={onClick}>
       <div className="post-header-row">
-          <div className="post-header-label">
-            {title}
-            {is_favorite && <span className="favorite-star">⭑</span>}
-          </div>
+        <div className="post-header-label">
+          {title}
+          {is_favorite && <span className="favorite-star">⭑</span>}
+        </div>
 
         {created_at && (
           <div className="created-label">

@@ -22,7 +22,7 @@ export default function ReviewPage() {
 
     setLoading(true);
     fetchBookReviewPost(slugOrId)
-      .then(data => {
+      .then((data) => {
         if (!data) return;
         setPost(data);
 

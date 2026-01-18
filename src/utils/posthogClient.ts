@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
   posthog.init(process.env.REACT_APP_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.REACT_APP_PUBLIC_POSTHOG_HOST,
     person_profiles: 'always',
-    loaded: ph => {
+    loaded: (ph) => {
       if (process.env.NODE_ENV === 'development') {
         ph.debug();
       }

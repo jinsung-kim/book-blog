@@ -19,7 +19,7 @@ interface FetchBookReviewOptions {
 }
 
 export async function fetchBookReviewPosts(
-  options: FetchBookReviewOptions = {},
+  options: FetchBookReviewOptions = {}
 ): Promise<BookReviewPost[]> {
   const { isPersonalFavorite, tags } = options;
 
@@ -46,7 +46,7 @@ export async function fetchBookReviewPosts(
 }
 
 export async function fetchBookReviewPost(
-  identifier: string,
+  identifier: string
 ): Promise<BookReviewPost | null> {
   captureEvent('fetch_book_review_post', { identifier });
 
@@ -90,7 +90,7 @@ export async function fetchAllTags(): Promise<string[]> {
     return [];
   }
 
-  const allTags = data.flatMap(post => post.tags || []);
+  const allTags = data.flatMap((post) => post.tags || []);
   const uniqueTags = Array.from(new Set(allTags));
   return uniqueTags.sort();
 }

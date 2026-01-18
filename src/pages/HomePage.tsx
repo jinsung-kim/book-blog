@@ -56,7 +56,7 @@ export default function HomePage() {
     (review: BookReviewPost) => {
       navigate(`/review/${review.slug}`);
     },
-    [navigate],
+    [navigate]
   );
 
   const handleTagClick = useCallback(
@@ -74,7 +74,7 @@ export default function HomePage() {
 
       setSearchParams(params);
     },
-    [searchParams, setSearchParams],
+    [searchParams, setSearchParams]
   );
 
   const handleFavoriteClick = useCallback(() => {
@@ -99,7 +99,7 @@ export default function HomePage() {
       }
       setSearchParams(params);
     },
-    [searchParams, setSearchParams],
+    [searchParams, setSearchParams]
   );
 
   return (
@@ -135,7 +135,7 @@ export default function HomePage() {
                   Favorites
                 </div>
 
-                {tags.map(t => (
+                {tags.map((t) => (
                   <div
                     className={`tag ${
                       filteredTags.includes(t) ? 'active' : ''

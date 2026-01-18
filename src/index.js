@@ -11,5 +11,5 @@ root.render(
     <PostHogProvider client={posthog}>
       <App />
     </PostHogProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
