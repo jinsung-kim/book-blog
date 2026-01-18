@@ -36,12 +36,14 @@ export default function PostPreviewCard({
   title,
   content,
   created_at,
+                                            is_favorite,
   tags,
   onClick,
 }: {
   title: string;
   content: string;
   created_at: string;
+  is_favorite: boolean;
   tags: string[];
   onClick: () => void;
 }) {
@@ -53,7 +55,10 @@ export default function PostPreviewCard({
   return (
     <div className="post-preview-container" onClick={onClick}>
       <div className="post-header-row">
-        <div className="post-header-label">{title}</div>
+          <div className="post-header-label">
+            {title}
+            {is_favorite && <span className="favorite-star">⭑</span>}
+          </div>
 
         {created_at && (
           <div className="created-label">

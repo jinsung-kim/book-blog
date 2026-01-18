@@ -181,6 +181,7 @@ export default function HomePage() {
                 title={p.title}
                 content={p.content}
                 created_at={p.created_at}
+                is_favorite={p.is_personal_favorite}
                 tags={p.tags}
                 key={`preview-${p.title}-${i}`}
               />
