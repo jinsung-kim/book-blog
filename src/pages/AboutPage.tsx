@@ -79,7 +79,7 @@ export default function AboutPage() {
           </div>
 
           <div className="label row">
-            Last updated 2025. See source code&nbsp;
+            Last updated 2026. See source code&nbsp;
             <div
               className="link"
               onClick={() => {
