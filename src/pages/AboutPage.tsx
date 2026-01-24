@@ -32,7 +32,7 @@ export default function AboutPage() {
             way to stay consistent and preserve my thoughts.
           </div>
           <div className="label">
-            I own a personal copy of most books featured here and am always
+            I own a personal copy of many books featured here and am always
             happy to lend them to friends.
           </div>
         </div>
@@ -61,8 +61,20 @@ export default function AboutPage() {
             <div className="label-bold">Favorite writers?</div>
 
             <ul>
-              <li>David Foster Wallace</li>
-              <li>Joan Didion</li>
+              <li>
+                David Foster Wallace - my all time favorite is{' '}
+                <a href="/review/infinite-jest" className="link">
+                  Infinite Jest
+                </a>
+                .
+              </li>
+              <li>
+                Joan Didion - I go back to{' '}
+                <a href="/review/the-white-album" className="link">
+                  The White Album
+                </a>{' '}
+                a lot for life inspo.
+              </li>
             </ul>
           </div>
 
