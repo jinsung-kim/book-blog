@@ -95,6 +95,7 @@ export async function fetchAllTags(): Promise<string[]> {
   return uniqueTags.sort();
 }
 
+// This is brittle because I re-read things from time to time ^.^
 export async function fetchCurrentlyReadingTitle(): Promise<string | null> {
   const { data, error } = await supabase
     .from('book_review_posts')
