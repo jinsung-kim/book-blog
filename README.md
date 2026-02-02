@@ -2,7 +2,7 @@ Hello ^.^
 
 This is my book blog.
 
-It originally started as a Github page mini repo, but I eventually bought a dedicated domain for it.
+It originally started as a Github page mini repo, but I eventually bought a dedicated domain for [it](https://www.thereadingcorner.net).
 
 It spans over 5 years at this point!
 
