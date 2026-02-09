@@ -33,7 +33,6 @@ function extractDescription(markdown: string): string {
     if (line.startsWith('>')) {
       quoteLines.push(line.replace(/^>\s*/, '').trim());
     } else if (quoteLines.length > 0) {
-      // Stop at first non-quote line after starting a blockquote
       break;
     }
   }
@@ -42,7 +41,6 @@ function extractDescription(markdown: string): string {
     return escapeHtml(quoteLines.join(' '));
   }
 
-  // fallback: 200-character excerpt
   return escapeHtml(
     markdown
       .replace(/!\[.*?\]\(.*?\)/g, '')
